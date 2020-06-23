@@ -51,14 +51,14 @@ def rotar_imagen(image):
     
     #Matriz de rotación
     
-    def matrix_rotate(angle, tx, ty):
+    def matrix_rotacion(angle, tx, ty):
         math_cos = math.cos(angle)
         math_sin = math.sin(angle)
         calculate_1 = (1 - math_cos) * tx - math_sin * ty
         calculate_2 = math_sin*tx+(1-math_cos)*ty
         return np.array([[math_cos, math_sin, calculate_1], [-math_sin, math_cos, calculate_2]], dtype=np.float32)
    
-    M = matrix_rotate(0.261799, ancho//2, alto//2)
+    M = matrix_rotacion(0.261799, ancho//2, alto//2)
     imageOut = cv2.warpAffine(img, M , (ancho, alto))
         
     return imageOut
