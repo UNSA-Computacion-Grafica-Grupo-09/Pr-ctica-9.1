@@ -51,9 +51,9 @@ def rotar_imagen(image):
     
     #Matriz de rotación
     
-    def matrix_rotacion(angle, tx, ty):
-        math_cos = math.cos(angle)
-        math_sin = math.sin(angle)
+    def matrix_rotacion(angulo, tx, ty):
+        math_cos = math.cos(angulo)
+        math_sin = math.sin(angulo)
         calculate_1 = (1 - math_cos) * tx - math_sin * ty
         calculate_2 = math_sin*tx+(1-math_cos)*ty
         return np.array([[math_cos, math_sin, calculate_1], [-math_sin, math_cos, calculate_2]], dtype=np.float32)
