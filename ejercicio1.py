@@ -44,38 +44,34 @@ def rotar_imagen(image):
     ancho = img.shape[1]  #Columnas
     alto = img.shape[0] #Filas
     
-    # def matrix_rotate(angle, tx, ty):
-    # angle = angulo de rotcion en rdianes 
+    # def matrix_rotate(angulo, tx, ty):
+    # angulo = angulo de rotcion en rdianes 
     # tx = el centro de la imagen en x
     # ty = el centro de la imagen en y
     
     #Matriz de rotación
     
     def matrix_rotacion(angulo, tx, ty):
-        math_cos = math.cos(angulo)
-        math_sin = math.sin(angulo)
-        calculate_1 = (1 - math_cos) * tx - math_sin * ty
-        calculate_2 = math_sin*tx+(1-math_cos)*ty
-        return np.array([[math_cos, math_sin, calculate_1], [-math_sin, math_cos, calculate_2]], dtype=np.float32)
+        coseno = math.cos(angulo)
+        seno = math.sin(angulo)
+        calcular_1 = (1 - coseno) * tx - seno * ty
+        calcular_2 = seno*tx+(1 - coseno)*ty
+        return np.array([[coseno, seno, calcular_1], [-seno, coseno, calcular_2]], dtype=np.float32)
    
     M = matrix_rotacion(0.261799, ancho//2, alto//2)
     imageOut = cv2.warpAffine(img, M , (ancho, alto))
         
     return imageOut
 
-# imagen1 = cv2.imread("marvel.jpg")
-# result = rotar_imagen(imagen1)
-# cv2.imwrite("rot_imagen_pru.jpg", result)
-# cv2.waitKey(0)
+imagen1 = cv2.imread("marvel.jpg")
+result = rotar_imagen(imagen1)
+cv2.imwrite("rot_imagen_pru.jpg", result)
+cv2.waitKey(0)
 
 def escalar_imagen(image, tx, ty):
     img = image.copy()
     ancho = img.shape[1]  #Columnas
     alto = img.shape[0] #Filas
-    
-    
-    # M = np.float32([[2, 0, 0], [0, 2, 0]])
-    # dst=cv2.warpAffine(img1, M, (c, f))
     
     M = np.array([[tx,0,0],[0,ty,0]], dtype = np.float32)
     imageOut = cv2.warpAffine(img, M , (ancho, alto))    
@@ -98,7 +94,7 @@ def shear_imagen(image):
     return imageOut
   
        
-imagen1 = cv2.imread("batman.jpg")
-result = shear_imagen(imagen1)
-cv2.imwrite("recort_imagen.jpg", result)
-cv2.waitKey(0)
+# imagen1 = cv2.imread("batman.jpg")
+# result = shear_imagen(imagen1)
+# cv2.imwrite("recort_imagen.jpg", result)
+# cv2.waitKey(0)
